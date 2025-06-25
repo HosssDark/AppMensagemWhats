@@ -1,0 +1,36 @@
+﻿@model Domain.Curso
+
+@{
+    ViewData["Title"] = "Cursos - Adicionar";
+}
+
+<div class="tab-pane active">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+
+        @using (Html.BeginForm("Adicionar", "Curso", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(a => a.Descricao)
+                        @Html.TextBoxFor(a => a.Descricao, "", new { @class = "form-control", @autofocus = "autofocus" })
+                        @Html.ValidationMessage("Descricao")
+                    </div>
+
+                </div>
+
+                <div class="row clearfix margin-top-40">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary fa-pull-left">Gravar</button>
+                        <a href="@Url.Action("Index", "Curso")" class="btn btn-default fa-pull-right">Fechar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

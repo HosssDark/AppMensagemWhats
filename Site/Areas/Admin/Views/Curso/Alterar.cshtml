@@ -1,0 +1,44 @@
+﻿@model Domain.Curso
+
+@{
+    ViewData["Title"] = "Curso - Alterar";
+}
+
+<div class="tab-pane active">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+
+        @using (Html.BeginForm("Alterar", "Curso", FormMethod.Post))
+        {
+
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.Id)
+                @Html.HiddenFor(a => a.DataCadastro)
+                @Html.HiddenFor(a => a.Ativo)
+
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(a => a.Descricao)
+                        @Html.TextBoxFor(a => a.Descricao, "", new { @class = "form-control", @autofocus = "autofocus" })
+                        @Html.ValidationMessage("Descricao")
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(a => a.DataCadastro)
+                        @Html.TextBoxFor(a => a.DataCadastro, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @name = "date", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="row clearfix margin-top-40">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary fa-pull-left">Gravar</button>
+                        <a href="@Url.Action("Index", "Curso")" class="btn btn-default fa-pull-right">Fechar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

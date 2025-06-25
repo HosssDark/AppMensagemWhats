@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>SGIA UNEMAT</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
+    <link href="~/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="~/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/plugins/datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/plugins/datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.1/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/plugins/summernote/dist/summernote.css" rel="stylesheet" />
+    <link href="~/css/style.min.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/css/style.custom.css" rel="stylesheet" />
+    <link href="~/js/pnotify/pnotify.css" rel="stylesheet" />
+    <link href="~/js/pnotify/brighttheme.css" rel="stylesheet" />
+    <link href="~/js/pnotify/material.css" rel="stylesheet" />
+    <link href="~/js/pnotify/angeler.css" rel="stylesheet" />
+</head>
+
+<body class="font-muli theme-cyan gradient">
+
+    <div class="page-loader-wrapper">
+        <div class="loader">
+        </div>
+    </div>
+
+    <div id="main_content">
+
+        @Html.Partial("~/Areas/Admin/Views/Shared/MainTop.cshtml")
+
+        @Html.Partial("~/Areas/Admin/Views/Shared/SettingPanel.cshtml")
+
+        @Html.Partial("~/Areas/Admin/Views/Shared/ThemePanel.cshtml")
+
+        @Html.Partial("~/Areas/Admin/Views/Shared/QuickMenu.cshtml")
+
+        <div class="RenderAction" id="LeftBar" data-url="/Admin/Home/LeftBar"></div>
+
+        <div class="page">
+            <div class="section-body" id="page_top">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="left">
+                            
+                        </div>
+                        <div class="right">
+                            <div class="notification d-flex">
+                                <div class="dropdown d-flex">
+                                    <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+                                    <div id="Notification"></div>
+                                </div>
+                                <div id="UserImage"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-body mt-4">
+                <div class="container-fluid">
+                    <div class="tab-content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/bundles/lib.vendor.bundle.js"></script>
+    <script src="~/bundles/counterup.bundle.js"></script>
+    <script src="~/bundles/apexcharts.bundle.js"></script>
+    <script src="~/bundles/summernote.bundle.js"></script>
+
+    <script src="~/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/bundles/dataTables.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.1/dist/sweetalert2.all.min.js"></script>
+
+    <script src="~/js/core.js"></script>
+    <script src="~/js/page/dialogs.js"></script>
+    <script src="~/js/page/index.js"></script>
+    <script src="~/js/page/summernote.js"></script>
+    <script src="~/js/table/datatable.js"></script>
+    <script src="~/js/jquery-mask/jquery.mask.js"></script>
+    <script src="~/js/PluginsElias/Funcoes.js"></script>
+    <script src="~/js/PartialViews.js"></script>
+    <script src="~/js/pnotify/pnotify.js"></script>
+    <script src="~/js/Notificacao.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

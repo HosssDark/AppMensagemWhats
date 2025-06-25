@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Mensagens";
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            render_action();
+
+            $('#Curso').change(search);
+            $('#Buscar').keyup(search);
+            $('#DataInicial, #DataFinal').focusout(search);
+        });
+
+        function search() {
+
+            var filters = {
+                Buscar: $('#Buscar').val(),
+                CursoId: $('#Curso').val(),
+                DataInicial: $('#DataInicial').val(),
+                DataFinal: $('#DataFinal').val()
+            }
+
+            render_action(filters);
+        }
+
+        function render_action(filters) {
+            $.ajax({
+                method: 'GET',
+                url: '/Admin/Mensagem/Grid',
+                dataType: 'html',
+                data: filters,
+                success: function (content) {
+                    $('#Grid').html(content);
+                }
+            });
+        }
+
+        function EnviarMensagem(e) {
+
+            var token = $("input[type = hidden][name = __RequestVerificationToken]").val();
+
+            var url = e.currentTarget.dataset.url;
+            var id = e.currentTarget.dataset.id;
+
+            var data = {
+                __RequestVerificationToken: token,
+                Id: id
+            }
+
+            Swal.fire({
+                title: 'Deseja Enviar a Mensagem?',
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: `Sim`,
+                cancelButtonText: `Não`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        method: 'POST',
+                        url: url + id,
+                        data: data,
+                        success: function (data) {
+                            singleMessage(data.message, data.type);
+                        }
+                    })
+                }
+            })
+        }
+
+    </script>
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+
+    <div class="card-body">
+
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("lblNome", "Buscar por")
+                        @Html.TextBox("Buscar", "", new { @class = "form-control", @placeholder = "'Assunto' ou 'Mensagem'", @autofocus = "autofocus" })
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.Label("lblCurso", "Curso")
+                        @Html.DropDownList("Curso", HelperLista.Curso(), "Todos", new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.Label("lblDataInicial", "Data Inicial")
+                        @Html.TextBox("DataInicial", "", new { @class = "form-control", @type = "date", @name = "date" })
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.Label("lblDataFinal", "Data Final")
+                        @Html.TextBox("DataFinal", "", new { @class = "form-control", @type = "date", @name = "date" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <a href="@Url.Action("Adicionar", "Mensagem")" style="margin-top: 26px;" class="btn btn-sm btn-primary btn-block" title="">Adicionar</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="Grid"></div>

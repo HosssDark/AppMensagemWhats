@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Repository.UsuarioViewModel>
+
+@{
+    Layout = null;
+}
+
+<div class="row clearfix margin-top-40">
+    <div class="table-responsive">
+        <table class="table table-hover js-basic-example dataTable table-striped table_custom border-style spacing5">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo Usuário</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th style="text-align: center;">Opções</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var Usuario in Model.OrderBy(a => a.NomeCompleto))
+                {
+                    <tr>
+                        <td style="vertical-align: middle !important;">@Usuario.NomeCompleto</td>
+                        <td style="vertical-align: middle !important;">@Usuario.TipoUsuario</td>
+                        <td style="vertical-align: middle !important;">@Usuario.Email</td>
+                        <td style="vertical-align: middle !important;">@Usuario.Status</td>
+                        <td style="text-align: center;">
+
+                            <a href="@Url.Action("Alterar", "Usuario", new { Id = Usuario.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Alterar">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+
+                            <a href="@Url.Action("Detalhes", "Usuario", new { Id = Usuario.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Detalhes">
+                                <i class="fas fa-search text-primary"></i>
+                            </a>
+
+                            <a href="#"
+                               onclick="Excluir(event)"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Excluir"
+                               data-id="@Usuario.Id"
+                               data-url="/Admin/Usuario/Excluir?Id=">
+                                <i class="fas fa-trash-alt text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

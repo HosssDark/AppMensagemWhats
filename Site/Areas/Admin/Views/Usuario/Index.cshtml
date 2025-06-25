@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Usuários";
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+
+            render_action();
+
+            $('#Status, #TiposUsuario').change(search);
+            $('#Buscar').keyup(search);
+        });
+
+        function search() {
+
+            var filters = {
+                Buscar: $('#Buscar').val(),
+                StatusId: $('#Status').val(),
+                TiposUsuario: $('#TiposUsuario').val(),
+            }
+
+            render_action(filters);
+        }
+
+        function render_action(filters) {
+            $.ajax({
+                method: 'GET',
+                url: '/Admin/Usuario/Grid',
+                dataType: 'html',
+                data: filters,
+                success: function (content) {
+                    $('#Grid').html(content);
+                }
+            });
+        }
+
+    </script>
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+
+    <div class="card-body">
+
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.Label("lblNome", "Nome")
+                        @Html.TextBox("Buscar", "", new { @class = "form-control", @autofocus = "autofocus" })
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.Label("lblTiposUsuario", "Tipo Usuário")
+                        @Html.DropDownList("TiposUsuario", HelperLista.TipoUsuario(), "Selecione", new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.Label("lblStatus", "Status")
+                        @Html.DropDownList("Status", HelperLista.Status(), "Todos", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <a href="@Url.Action("Adicionar", "Usuario")" style="margin-top: 26px;" class="btn btn-sm btn-primary btn-block" title="">Adicionar</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="Grid"></div>

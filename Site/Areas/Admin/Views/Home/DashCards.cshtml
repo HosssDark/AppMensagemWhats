@@ -1,0 +1,42 @@
+﻿@model Site.DashCardsViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-yellow"><i class="fab fa-black-tie"></i> </div>
+        <div class="content">
+            <span>Total de Usuários</span>
+            <h5 class="number mb-0">@Model.UsuarioTotal.ToString()</h5>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-gray"><i class="fa fa-users"></i> </div>
+        <div class="content">
+            <span>Total de Discentes</span>
+            <h5 class="number mb-0">@Model.DiscentesTotal.ToString()</h5>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-dark"><i class="fa fa-drafting-compass"></i> </div>
+        <div class="content">
+            <span>Total de Mensagem Enviadas</span>
+            <h5 class="number mb-0">@Model.MensagemTotal.ToString()</h5>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-azure"><i class="fa fa-users"></i> </div>
+        <div class="content">
+            <span>Total de Cursos</span>
+            <h5 class="number mb-0">@Model.CursosTotal.ToString()</h5>
+        </div>
+    </div>
+</div>

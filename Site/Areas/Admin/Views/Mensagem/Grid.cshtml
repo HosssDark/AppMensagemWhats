@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Repository.MensagemViewModel>
+
+@{
+    Layout = null;
+}
+
+<div class="row clearfix margin-top-40">
+    <div class="table-responsive">
+        <table class="table table-hover js-basic-example dataTable table-striped table_custom border-style spacing5">
+            <thead>
+                <tr>
+                    <th>Assunto</th>
+                    <th>Enviado</th>
+                    <th>Dt Envio</th>
+                    <th>Curso</th>
+                    <th style="text-align: center;">Opções</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var Mensagem in Model.OrderBy(a => a.Assunto))
+                {
+                    <tr>
+                        <td style="vertical-align: middle !important;">@Mensagem.Assunto</td>
+                        <td style="vertical-align: middle !important;">@Mensagem.Enviado</td>
+                        <td style="vertical-align: middle !important;">@Mensagem.DataEnvio?.ToString("dd/MM/yyyy")</td>
+                        <td style="vertical-align: middle !important;">@Mensagem.Curso</td>
+                        <td style="text-align: center;">
+
+                            <a href="@Url.Action("Alterar", "Mensagem", new { Id = Mensagem.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Alterar">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+
+                            <a href="@Url.Action("Detalhes", "Mensagem", new { Id = Mensagem.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Detalhes">
+                                <i class="fas fa-search text-primary"></i>
+                            </a>
+
+                            <a href="#"
+                               onclick="EnviarMensagem(event)"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Enviar"
+                               data-id="@Mensagem.Id"
+                               data-url="/Admin/Mensagem/EnviarMensagem?Id=">
+                                <i class="fas fa-paper-plane"></i>
+                            </a>
+
+                            <a href="#"
+                               onclick="Excluir(event)"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Excluir"
+                               data-id="@Mensagem.Id"
+                               data-url="/Admin/Mensagem/Excluir?Id=">
+                                <i class="fas fa-trash-alt text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

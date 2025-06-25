@@ -1,0 +1,57 @@
+﻿@model Domain.MensagemWhats
+
+@{
+    ViewData["Title"] = "Mensagem - Detalhes";
+}
+
+<div class="tab-pane active">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(a => a.Id)
+            @Html.HiddenFor(a => a.DataCadastro)
+
+            <div class="row">
+                <div class="col-md-8">
+                    @Html.LabelFor(a => a.Assunto)
+                    @Html.TextBoxFor(a => a.Assunto, "", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-2">
+                    @Html.LabelFor(a => a.DataEnvio)
+                    @Html.TextBoxFor(a => a.DataEnvio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @name = "date", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-2">
+                    @Html.LabelFor(a => a.Enviado)
+                    @Html.DropDownListFor(a => a.Enviado, HelperLista.SimOuNao(), null, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-12">
+                    @Html.LabelFor(a => a.Mensagem)
+                    @Html.TextAreaFor(a => a.Mensagem, 5, 100, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-4">
+                    @Html.LabelFor(a => a.CursoId)
+                    @Html.DropDownListFor(a => a.CursoId, HelperLista.Curso(), null, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="col-md-2">
+                    @Html.LabelFor(a => a.DataCadastro)
+                    @Html.TextBoxFor(a => a.DataCadastro, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @name = "date", @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="row clearfix margin-top-40">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Index", "Mensagem")" class="btn btn-default fa-pull-right">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

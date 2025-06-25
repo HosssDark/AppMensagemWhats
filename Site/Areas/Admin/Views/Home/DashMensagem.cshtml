@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.MensagemWhats>
+
+@{
+    ViewData["Title"] = "Mensagens";
+
+    Layout = null;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped mb-0 text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Assunto</th>
+                        <th>Mensagem</th>
+                        <th>Enviado</th>
+                        @* <th>Carga Hor.</th> *@
+                        <th>DataEnvio</th>
+                        <th>DataCadastro</th>
+                        <th>Progresso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderBy(a => a.Id))
+                    {
+                        <tr>
+                            <td>@item.Assunto</td>
+                            <td>@item.Mensagem</td>
+
+                            @if (@item.Enviado)
+                            {
+                                <td>Sim</td>
+                            }
+                            else
+                            {
+                                <td>Não</td>
+                            }
+                            
+                            @* <td><button class="@item.Classe">@item.Status</button></td> *@
+                            @* <td>@string.Format("{0} Hrs", item.CargaHoraria.ToString())</td> *@
+                            <td>@item.DataEnvio?.ToString("dd/MM/yyyy")</td>
+                            <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

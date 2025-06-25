@@ -1,0 +1,90 @@
+﻿@model DiscenteViewModel
+
+@{
+    ViewData["Title"] = "Discente - Alterar";
+}
+
+<div class="tab-pane active">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+
+        @using (Html.BeginForm("Alterar", "Discente", FormMethod.Post))
+        {
+
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.Discente.Id)
+                @Html.HiddenFor(a => a.Discente.DataCadastro)
+                @Html.HiddenFor(a => a.Discente.Ativo)
+
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.LabelFor(a => a.Discente.Matricula)
+                            @Html.TextBoxFor(a => a.Discente.Matricula, "", new { @class = "form-control", @autofocus = "autofocus" })
+                            @Html.ValidationMessage("Matricula_Aluno")
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(a => a.Discente.Nome)
+                            @Html.TextBoxFor(a => a.Discente.Nome, "", new { @class = "form-control" })
+                            @Html.ValidationMessage("Discente_Nome")
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(a => a.Discente.Email)
+                            @Html.TextBoxFor(a => a.Discente.Email, "", new { @class = "form-control" })
+                            @Html.ValidationMessage("Discente_Email")
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.LabelFor(a => a.Discente.Celular)
+                            @Html.TextBoxFor(a => a.Discente.Celular, "", new { @class = "form-control celular" })
+                            @Html.ValidationMessage("Discente_Celular")
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.LabelFor(a => a.Discente.DataNascimento)
+                            @Html.TextBoxFor(a => a.Discente.DataNascimento, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @name = "date" })
+                            @Html.ValidationMessage("Discente_DataNascimento")
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(a => a.Discente.CursoId)
+                            @Html.DropDownListFor(a => a.Discente.CursoId, HelperLista.Curso(), null, new { @class = "form-control" })
+                            @Html.ValidationMessage("Discente_CursoId")
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(a => a.Discente.StatusId)
+                            @Html.DropDownListFor(a => a.Discente.StatusId, HelperLista.DiscenteStatus(), null, new { @class = "form-control" })
+                            @Html.ValidationMessage("Discente_StatusId")
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix margin-top-40">
+
+                    <div class="col-sm-2">
+                        <img id=preview width="100" height="100" src="@Model.Image">
+                    </div>
+
+                    <div class="col-md-5">
+                        <label asp-for="File"></label>
+                        <input asp-for="File" class="form-control" />
+                        <span asp-validation-for="File" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row clearfix margin-top-40">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary fa-pull-left">Gravar</button>
+                        <a href="@Url.Action("Index", "Discente")" class="btn btn-default fa-pull-right">Fechar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Repository.CursoViewModel>
+
+@{
+    Layout = null;
+}
+
+<div class="row clearfix margin-top-40">
+    <div class="table-responsive">
+        <table class="table table-hover js-basic-example dataTable table-striped table_custom border-style spacing5">
+            <thead>
+                <tr>
+                    <th>Data Cadastro</th>
+                    <th>Descrição</th>
+                    <th style="text-align: center;">Opções</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var Curso in Model.OrderBy(a => a.DataCadastro))
+                {
+                    <tr>
+                        <td style="vertical-align: middle !important;">@Curso.DataCadastro.ToString("dd/MM/yyyy")</td>
+                        <td style="vertical-align: middle !important;">@Curso.Descricao</td>
+                        <td style="text-align: center;">
+
+                            <a href="@Url.Action("Alterar", "Curso", new { Id = Curso.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Alterar">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+
+                            <a href="@Url.Action("Detalhes", "Curso", new { Id = Curso.Id })"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Detalhes">
+                                <i class="fas fa-search text-primary"></i>
+                            </a>
+
+
+                            <a href="#"
+                               onclick="Excluir(event)"
+                               class="btn btn-icon btn-sm js-sweetalert"
+                               title="Excluir"
+                               data-id="@Curso.Id"
+                               data-url="/Admin/Curso/Excluir?Id=">
+                                <i class="fas fa-trash-alt text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

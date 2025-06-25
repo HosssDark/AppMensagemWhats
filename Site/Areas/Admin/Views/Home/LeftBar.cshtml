@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+
+    int Acesso = ViewBag.TipoAcesso != null ? ViewBag.TipoAcesso : 2;
+}
+
+<script>
+    $('.menu_option').on('click', function () {
+        $('.metismenu').toggleClass('grid');
+        $('.menu_option').toggleClass('active');
+    });
+</script>
+
+<div id="left-sidebar" class="sidebar" style="background-color:#00184d !important">
+    <h5 class="brand-name">Unemat<a href="javascript:void(0)" class="menu_option float-right"><i class="fas fa-th-large"></i></a></h5>
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu-uni">Administrador</a></li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="menu-uni" role="tabpanel">
+            <nav class="sidebar-nav">
+                <ul class="metismenu" style="margin-left: 5px;">
+                    <li><a title="Curso" href="@Url.Action("Index", "Curso")"><i class=""></i><span>Cursos</span></a></li>
+                    <li><a title="Discente" href="@Url.Action("Index", "Discente")"><i class=""></i><span>Discentes</span></a></li>
+                    <li><a title="Mensagem" href="@Url.Action("Index", "Mensagem")"><i class=""></i><span>Mensagens</span></a></li>
+                    <li><a title="Usuario" href="@Url.Action("Index", "Usuario")"><i class=""></i><span>Usuários</span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>

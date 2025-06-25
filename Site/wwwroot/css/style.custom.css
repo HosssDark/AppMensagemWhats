@@ -1,0 +1,24 @@
+﻿.footer-view {
+    margin-bottom: 30px !important;
+    margin-top: 50px !important;
+}
+
+.card-header {
+    background-color: #00184d !important;
+}
+
+.card-title{
+    color: white !important;
+}
+
+.field-validation-error{
+    color: red !important;
+}
+
+.margin-top-40 {
+    margin-top: 40px;
+}
+
+.bottom-margem{
+    margin-top: 26px;
+}

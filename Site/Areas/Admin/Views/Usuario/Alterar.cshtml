@@ -1,0 +1,68 @@
+﻿@model Domain.Usuario
+
+@{
+    ViewData["Title"] = "Usuário - Alterar";
+}
+
+<div class="tab-pane active">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+
+        @using (Html.BeginForm("Alterar", "Usuario", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(a => a.Id)
+            @Html.HiddenFor(a => a.DataCadastro)
+            @Html.HiddenFor(a => a.Ativo)
+
+            <div class="card-body">
+
+                <div class="row clearfix">
+                    <div class="col-md-4">
+                        @Html.LabelFor(a => a.Nome)
+                        @Html.TextBoxFor(a => a.Nome, "", new { @class = "form-control", @autofocus = "autofocus" })
+                        @Html.ValidationMessageFor(a => a.Nome)
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(a => a.NomeCompleto)
+                        @Html.TextBoxFor(a => a.NomeCompleto, "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.NomeCompleto)
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(a => a.TipoUsuario)
+                        @Html.DropDownListFor(a => a.TipoUsuario, HelperLista.TipoUsuario(), null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.TipoUsuario)
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(a => a.Email)
+                        @Html.TextBoxFor(a => a.Email, "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Email)
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(a => a.StatusId)
+                        @Html.DropDownListFor(a => a.StatusId, HelperLista.Status(), null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.StatusId)
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(a => a.DataCadastro)
+                        @Html.TextBoxFor(a => a.DataCadastro, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @name = "date", @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="row clearfix margin-top-40">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary fa-pull-left">Gravar</button>
+                        <a href="@Url.Action("Index", "Usuario")" class="btn btn-default fa-pull-right">Fechar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
