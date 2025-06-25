@@ -6,7 +6,6 @@ using System;
 using Domain;
 using Site.Models;
 using static Functions.Enum;
-using static Functions.Constant;
 
 namespace Site.Areas.Admin.Controllers
 {
@@ -39,7 +38,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroObterRegistro;
+                TempData["Error"] = Constant.MsgErroObterRegistro;
                 return View();
             }
         }
@@ -58,13 +57,13 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Nome))
-                    ModelState.AddModelError("Nome", "Obrigatório");
+                    ModelState.AddModelError("Nome", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.NomeCompleto))
-                    ModelState.AddModelError("NomeCompleto", "Obrigatório");
+                    ModelState.AddModelError("NomeCompleto", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.TipoUsuario))
-                    ModelState.AddModelError("TipoUsuario", "Obrigatório");
+                    ModelState.AddModelError("TipoUsuario", Constant.MsgObrigatorio);
 
                 if (!string.IsNullOrEmpty(Model.Email))
                 {
@@ -75,7 +74,7 @@ namespace Site.Areas.Admin.Controllers
                         ModelState.AddModelError("Email", "Email já cadastrado");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -86,7 +85,7 @@ namespace Site.Areas.Admin.Controllers
 
                     _usuarioRep.Add(Model);
 
-                    TempData["Success"] = MsgGravadoSucesso;
+                    TempData["Success"] = Constant.MsgGravadoSucesso;
 
                     return RedirectToAction("Index");
                 }
@@ -96,7 +95,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroTentarGravarRegistro;
+                TempData["Error"] = Constant.MsgErroTentarGravarRegistro;
                 return View(Model);
             }
         }
@@ -120,7 +119,7 @@ namespace Site.Areas.Admin.Controllers
 
                 #endregion
 
-                TempData["Error"] = MsgRegistroNaoEncontrado;
+                TempData["Error"] = Constant.MsgRegistroNaoEncontrado;
                 return RedirectToAction("Index");
             }
         }
@@ -134,13 +133,13 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Nome))
-                    ModelState.AddModelError("Nome", "Obrigatório");
+                    ModelState.AddModelError("Nome", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.NomeCompleto))
-                    ModelState.AddModelError("NomeCompleto", "Obrigatório");
+                    ModelState.AddModelError("NomeCompleto", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.TipoUsuario))
-                    ModelState.AddModelError("TipoUsuario", "Obrigatório");
+                    ModelState.AddModelError("TipoUsuario", Constant.MsgObrigatorio);
 
                 if (!string.IsNullOrEmpty(Model.Email))
                 {
@@ -148,7 +147,7 @@ namespace Site.Areas.Admin.Controllers
                         ModelState.AddModelError("Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -156,7 +155,7 @@ namespace Site.Areas.Admin.Controllers
                 {
                     _usuarioRep.Attach(Model);
 
-                    TempData["Success"] = MsgAlteradoSucesso;
+                    TempData["Success"] = Constant.MsgAlteradoSucesso;
 
                     return RedirectToAction("Index");
                 }
@@ -166,7 +165,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroTentarAlterarRegistro;
+                TempData["Error"] = Constant.MsgErroTentarAlterarRegistro;
                 return View(Model);
             }
         }
@@ -180,7 +179,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgRegistroNaoEncontrado;
+                TempData["Error"] = Constant.MsgRegistroNaoEncontrado;
                 return RedirectToAction("Index");
             }
         }
@@ -197,10 +196,10 @@ namespace Site.Areas.Admin.Controllers
                 {
                     _usuarioRep.Inativar(Model);
 
-                    return Json(new ResultViewModel(TypeResult.Ok, TypeMessage.Success, MsgRegistroInativado));
+                    return Json(new ResultViewModel(TypeResult.Ok, TypeMessage.Success, Constant.MsgRegistroInativado));
                 }
 
-                return Json(new ResultViewModel(TypeResult.Error, TypeMessage.Error, MsgRegistroNaoEncontrado));
+                return Json(new ResultViewModel(TypeResult.Error, TypeMessage.Error, Constant.MsgRegistroNaoEncontrado));
             }
             catch (Exception Error)
             {
@@ -215,7 +214,7 @@ namespace Site.Areas.Admin.Controllers
 
                 #endregion
 
-                TempData["Error"] = MsgErroTentarExcluir;
+                TempData["Error"] = Constant.MsgErroTentarExcluir;
                 return Json(new { Result = "Erro" });
             }
         }

@@ -39,6 +39,7 @@ namespace Repository
                              Status = sta.Descricao,
                              StatusId = usuario.StatusId,
                              DataCadastro = usuario.DataCadastro,
+                             Imagem = usuario.Imagem
                          });
 
             #region + Filtro
@@ -71,6 +72,22 @@ namespace Repository
         public bool EmailJaCadastrado(string Email)
         {
             return Get(a => a.Email == Email).Count() > 0 ? true : false;
+        }
+
+        public void AlteraSenha(int Id, string Senha)
+        {
+            IUsuarioSenhaRepository _usuarioSenhaRep = new UsuarioSenhaRepository();
+
+            var Model = _usuarioSenhaRep.Get(a => a.Id == Id).FirstOrDefault();
+
+            var Usuario = GetById(Id);
+
+            if (Model != null)
+            {
+                Model.Senha = Functions.Functions.MD5Hash(Senha + Usuario.Email);
+
+                _usuarioSenhaRep.Attach(Model);
+            }
         }
     }
 }

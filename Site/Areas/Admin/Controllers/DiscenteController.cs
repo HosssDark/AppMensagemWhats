@@ -7,6 +7,7 @@ using Site.Libraries;
 using Site.Models;
 using static Functions.Enum;
 using static Functions.Constant;
+using System.IO;
 
 namespace Site.Areas.Admin.Controllers
 {
@@ -51,20 +52,20 @@ namespace Site.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Adicionar(DiscenteViewModel Model)
+        public IActionResult Adicionar(ViewModel.DiscenteViewModel Model)
         {
             try
             {
                 #region Validacao
 
                 if (Model.Discente.DataNascimento == null)
-                    ModelState.AddModelError("Discente_DataNascimento", "Obrigatório");
+                    ModelState.AddModelError("Discente_DataNascimento", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Nome))
-                    ModelState.AddModelError("Discente_Nome", "Obrigatório");
+                    ModelState.AddModelError("Discente_Nome", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Matricula))
-                    ModelState.AddModelError("Matricula_Aluno", "Obrigatório");
+                    ModelState.AddModelError("Matricula_Aluno", Constant.MsgObrigatorio);
                 else
                 {
                     if (_discenteRep.MatriculaJaCadastrado(Model.Discente.Matricula))
@@ -80,18 +81,31 @@ namespace Site.Areas.Admin.Controllers
                         ModelState.AddModelError("Discente_Email", "Email já cadastrado");
                 }
                 else
-                    ModelState.AddModelError("Discente_Email", "Obrigatório");
+                    ModelState.AddModelError("Discente_Email", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Celular))
-                    ModelState.AddModelError("Discente_Celular", "Obrigatório");
+                    ModelState.AddModelError("Discente_Celular", Constant.MsgObrigatorio);
 
                 if (Model.Discente.CursoId == 0)
-                    ModelState.AddModelError("Discente_CursoId", "Obrigatório");
+                    ModelState.AddModelError("Discente_CursoId", Constant.MsgObrigatorio);
 
                 #endregion
 
                 if (ModelState.IsValid)
                 {
+                    if (Model.File != null)
+                    {
+                        if (Model.File.Length > 0)
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                Model.File.CopyTo(ms);
+                                var fileBytes = ms.ToArray();
+                                Model.Discente.Imagem = string.Format("data:{0};base64,{1}", Model.File.ContentType, Convert.ToBase64String(fileBytes));
+                            }
+                        }
+                    }
+
                     Model.Discente.DataCadastro = DateTime.Now;
                     Model.Discente.Ativo = true;
 
@@ -118,7 +132,7 @@ namespace Site.Areas.Admin.Controllers
             {
                 var Discente = _discenteRep.GetById(Id);
 
-                DiscenteViewModel Model = new DiscenteViewModel()
+                ViewModel.DiscenteViewModel Model = new ViewModel.DiscenteViewModel()
                 {
                     Discente = Discente
                 };
@@ -135,20 +149,20 @@ namespace Site.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Alterar(DiscenteViewModel Model)
+        public IActionResult Alterar(ViewModel.DiscenteViewModel Model)
         {
             try
             {
                 #region Validacao
 
                 if (Model.Discente.DataNascimento == null)
-                    ModelState.AddModelError("Discente_DataNascimento", "Obrigatório");
+                    ModelState.AddModelError("Discente_DataNascimento", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Nome))
-                    ModelState.AddModelError("Discente_Nome", "Obrigatório");
+                    ModelState.AddModelError("Discente_Nome", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Matricula))
-                    ModelState.AddModelError("Matricula_Aluno", "Obrigatório");
+                    ModelState.AddModelError("Matricula_Aluno", Constant.MsgObrigatorio);
 
                 if (!string.IsNullOrEmpty(Model.Discente.Email))
                 {
@@ -156,18 +170,31 @@ namespace Site.Areas.Admin.Controllers
                         ModelState.AddModelError("Discente_Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Discente_Email", "Obrigatório");
+                    ModelState.AddModelError("Discente_Email", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Discente.Celular))
-                    ModelState.AddModelError("Discente_Celular", "Obrigatório");
+                    ModelState.AddModelError("Discente_Celular", Constant.MsgObrigatorio);
 
                 if (Model.Discente.CursoId == 0)
-                    ModelState.AddModelError("Discente_CursoId", "Obrigatório");
+                    ModelState.AddModelError("Discente_CursoId", Constant.MsgObrigatorio);
 
                 #endregion
 
                 if (ModelState.IsValid)
                 {
+                    if (Model.File != null)
+                    {
+                        if (Model.File.Length > 0)
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                Model.File.CopyTo(ms);
+                                var fileBytes = ms.ToArray();
+                                Model.Discente.Imagem = string.Format("data:{0};base64,{1}", Model.File.ContentType, Convert.ToBase64String(fileBytes));
+                            }
+                        }
+                    }
+
                     _discenteRep.Attach(Model.Discente);
 
                     TempData["Success"] = MsgAlteradoSucesso;
@@ -191,7 +218,7 @@ namespace Site.Areas.Admin.Controllers
             {
                 var Discente = _discenteRep.GetById(Id);
 
-                DiscenteViewModel Model = new DiscenteViewModel()
+                ViewModel.DiscenteViewModel Model = new ViewModel.DiscenteViewModel()
                 {
                     Discente = Discente
                 };

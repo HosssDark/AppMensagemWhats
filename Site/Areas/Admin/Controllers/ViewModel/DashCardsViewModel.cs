@@ -1,9 +1,11 @@
 ﻿using System;
 
-namespace Site
+namespace Site.Areas.Admin.Controllers.ViewModel
 {
     public class DashCardsViewModel
     {
+        public int MensagemEnviadaTotal { get; set; }
+        public int MensagemNaoEnviadaTotal { get; set; }
         public int MensagemTotal { get; set; }
         public int UsuarioTotal { get; set; }
         public int DiscentesTotal { get; set; }

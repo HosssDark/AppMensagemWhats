@@ -1,0 +1,31 @@
+﻿@model Site.Areas.Admin.Controllers.ViewModel.UsuarioSenhaViewModel
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AttachPassword", "Profile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(a => a.Id)
+
+    <div class="card-body">
+
+        @Html.AntiForgeryToken()
+
+        <div class="row clearfix">
+
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+    </div>
+
+    <div class="row clearfix margin-top-40">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary">Gravar</button>
+        </div>
+    </div>
+}

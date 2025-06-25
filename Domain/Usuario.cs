@@ -23,5 +23,7 @@ namespace Domain
 
         [Display(Name = "Status")]
         public int StatusId { get; set; }
+
+        public string Imagem { get; set; }
     }
 }

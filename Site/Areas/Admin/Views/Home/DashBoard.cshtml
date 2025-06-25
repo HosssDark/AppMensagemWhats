@@ -1,5 +1,113 @@
-﻿<div class="row">
+﻿@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        new Chart(document.getElementById("chartMensagensMes"), {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            datasets: [{
+              label: 'Mensagens',
+              data: [120, 150, 200, 180, 220, 240, 100, 50, 25, 15, 45, 60],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: false
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        new Chart(document.getElementById("chartMediaUsuario"), {
+          type: 'bar',
+          data: {
+            labels: ['Maria', 'João', 'Ana', 'Carlos', 'Paula'],
+            datasets: [{
+              label: 'Média de Mensagens',
+              data: [15, 22, 8, 18, 25],
+              backgroundColor: 'rgba(255, 206, 86, 0.7)',
+              borderRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        new Chart(document.getElementById("chartMensagensCurso"), {
+          type: 'pie',
+          data: {
+            labels: ['Ciência da Computação', 'Direito', 'Engenharia Civil', 'Matemática'],
+            datasets: [{
+              data: [120, 180, 90, 60, 40],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+              ]
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        });
+    </script>
+}
+
+
+<div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div id="DashMensagem"></div>
     </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Total de Mensagens por Mês</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="chartMensagensMes" width="300" height="150"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Média de Mensagens por Usuário</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="chartMediaUsuario" width="300" height="150"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Mensagens por Curso</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="chartMensagensCurso" width="300" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+
+
 </div>

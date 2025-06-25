@@ -1,16 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System;
 
 namespace Site.Areas.Admin.Controllers.ViewModel
 {
     public class UsuarioViewModel : BaseViewModel
     {
-        [Display(Name = "Data Falecimento")]
-        public DateTime? DataFalecimento { get; set; }
-
-        [Display(Name = "Cargo")]
-        public int? CargoId { get; set; }
-
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "Obrigatório")]
         public string Nome { get; set; }
@@ -22,15 +15,12 @@ namespace Site.Areas.Admin.Controllers.ViewModel
         [Required(ErrorMessage = "Obrigatório")]
         public string Email { get; set; }
 
-        [Display(Name = "Telefone")]
-        public string Telefone { get; set; }
-
         [Display(Name = "Tipo Usuário")]
         [Required(ErrorMessage = "Obrigatório")]
         public string TipoUsuario { get; set; }
 
         public string Imagem { get; set; }
 
-        public string Capa { get; set; }
+        public bool Ativo { get; set; }
     }
 }

@@ -13,5 +13,7 @@ namespace Repository
         void Inativar(Usuario Model);
 
         bool EmailJaCadastrado(string Email);
+
+        void AlteraSenha(int Id, string Senha);
     }
 }

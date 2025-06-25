@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Functions\Functions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -45,10 +45,10 @@ namespace Site.Controllers
                         ModelState.AddModelError("Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Password))
-                    ModelState.AddModelError("Password", "Obrigatório");
+                    ModelState.AddModelError("Password", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -172,7 +172,7 @@ namespace Site.Controllers
                 #region + Validacao
 
                 if (string.IsNullOrEmpty(Model.Name))
-                    ModelState.AddModelError("Nome", "Obrigatório");
+                    ModelState.AddModelError("Nome", Constant.MsgObrigatorio);
 
                 if (!string.IsNullOrEmpty(Model.Email))
                 {
@@ -185,13 +185,13 @@ namespace Site.Controllers
                         ModelState.AddModelError("Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Password))
-                    ModelState.AddModelError("Password", "Obrigatório");
+                    ModelState.AddModelError("Password", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.ConfirmPassword))
-                    ModelState.AddModelError("ConfirmPassword", "Obrigatório");
+                    ModelState.AddModelError("ConfirmPassword", Constant.MsgObrigatorio);
 
                 if (Model.Password != Model.ConfirmPassword)
                     ModelState.AddModelError("ConfirmPassword", "Senhas não conferem");
@@ -219,7 +219,7 @@ namespace Site.Controllers
                             Name = "",
                             Image = "http://hossshs-001-site1.ftempurl.com/images/logo_unemat.gif",
                             Button = "",
-                            Title = "SGIA - Sistema de Gereciamento de Informações Acadêmicas",
+                            Title = "SGM - Sistema de Gereciamento de Informações Acadêmicas",
                             Email = EmailOutlook,
                             Link = Link,
                             SubjectMatter = "Email de Confirmação",
@@ -276,7 +276,7 @@ namespace Site.Controllers
                         ModelState.AddModelError("Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -303,7 +303,7 @@ namespace Site.Controllers
                             Name = "",
                             Image = "http://hossshs-001-site1.ftempurl.com/images/logo_unemat.gif",
                             Button = "Alterar Senha",
-                            Title = "SGIA - Sistema de Gereciamento de Informações Acadêmicas",
+                            Title = "SGM - Sistema de Gereciamento de Informações Acadêmicas",
                             Email = EmailOutlook,
                             Link = Link,
                             SubjectMatter = "Email de redefinição de senha",
@@ -391,7 +391,7 @@ namespace Site.Controllers
                         ModelState.AddModelError("Email", "Email Inválido!");
                 }
                 else
-                    ModelState.AddModelError("Email", "Obrigatório");
+                    ModelState.AddModelError("Email", Constant.MsgObrigatorio);
 
                 #endregion
 

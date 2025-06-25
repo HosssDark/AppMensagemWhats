@@ -35,9 +35,7 @@ namespace Site.Areas.Admin.Controllers
         {
             try
             {
-                //IParamDirectoryRepository imgRep = new ParamDirectoryRepository();
-
-                //ViewBag.Image = imgRep.GetImageUser(_LoginUser.GetUser().UserId, "images", "Usuarios", "Usuario", _appEnvironment.WebRootPath);
+                ViewBag.Image = _LoginUser.GetUser().Imagem;
 
                 return View(_LoginUser.GetUser());
             }
@@ -68,9 +66,11 @@ namespace Site.Areas.Admin.Controllers
             IDiscenteRepository _dicRep = new DiscenteRepository();
             IUsuarioRepository _usuarioRep = new UsuarioRepository();
 
-            DashCardsViewModel Model = new DashCardsViewModel
+            ViewModel.DashCardsViewModel Model = new ViewModel.DashCardsViewModel
             {
-                MensagemTotal = _mensagemRep.Get(a => a.Enviado).Count(),
+                MensagemEnviadaTotal = _mensagemRep.Get(a => a.Enviado).Count(),
+                MensagemNaoEnviadaTotal = _mensagemRep.Get(a => !a.Enviado).Count(),
+                MensagemTotal = _mensagemRep.GetAll().Count(),
                 CursosTotal = _cursoRep.Get().Count(),
                 DiscentesTotal = _dicRep.Get(a => a.StatusId == 1).Count(),
                 UsuarioTotal = _usuarioRep.Get(a => a.StatusId == 1).Count()

@@ -1,4 +1,4 @@
-﻿@model Site.DashCardsViewModel
+﻿@model Site.Areas.Admin.Controllers.ViewModel.DashCardsViewModel
 
 @{
     Layout = null;
@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-body top_counter">
-        <div class="icon bg-yellow"><i class="fab fa-black-tie"></i> </div>
+        <div class="icon bg-yellow"><i class="fa fa-address-card"></i> </div>
         <div class="content">
             <span>Total de Usuários</span>
             <h5 class="number mb-0">@Model.UsuarioTotal.ToString()</h5>
@@ -24,9 +24,27 @@
 </div>
 <div class="card">
     <div class="card-body top_counter">
-        <div class="icon bg-dark"><i class="fa fa-drafting-compass"></i> </div>
+        <div class="icon bg-success"><i class="fa fa-paper-plane"></i> </div>
         <div class="content">
-            <span>Total de Mensagem Enviadas</span>
+            <span>Mensagens Enviadas</span>
+            <h5 class="number mb-0">@Model.MensagemEnviadaTotal.ToString()</h5>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-warning"><i class="fa fa-paper-plane"></i> </div>
+        <div class="content">
+            <span>Mensagens a Serem Enviadas</span>
+            <h5 class="number mb-0">@Model.MensagemNaoEnviadaTotal.ToString()</h5>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body top_counter">
+        <div class="icon bg-dark"><i class="fa fa-paper-plane"></i> </div>
+        <div class="content">
+            <span>Total de Mensagens</span>
             <h5 class="number mb-0">@Model.MensagemTotal.ToString()</h5>
         </div>
     </div>

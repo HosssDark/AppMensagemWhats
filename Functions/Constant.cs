@@ -9,10 +9,11 @@ namespace Functions
         public readonly static string MsgRegistroNaoEncontrado = "Registro não encontrado.";
         public readonly static string MsgRegistroInativado = "Registro inativado com sucesso.";
         public readonly static string MsgObrigatorio = "Obrigatório.";
-        public readonly static string MsgErroTentarExcluir = "Erro ao tentar Excluir o Registro!";
-        public readonly static string MsgErroObterRegistro = "Erro ao Obter Registro";
-        public readonly static string MsgErroTentarGravarRegistro = "Erro ao tentar Gravar Registro!";
-        public readonly static string MsgErroTentarAlterarRegistro = "\"Erro ao tentar Alterar o Registro!\"";
+        public readonly static string MsgErroTentarExcluir = "Erro ao tentar Excluir o Registro.";
+        public readonly static string MsgErroObterRegistro = "Erro ao Obter Registro.";
+        public readonly static string MsgErroTentarGravarRegistro = "Erro ao tentar Gravar Registro.";
+        public readonly static string MsgErroTentarAlterarRegistro = "Erro ao tentar Alterar o Registro.";
+        public readonly static string MsgSenhaDiferentes = "Senhas são diferentes.";
 
         public static string MsgInvalido(string value)
         {

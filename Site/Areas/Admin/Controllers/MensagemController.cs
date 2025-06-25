@@ -10,6 +10,7 @@ using System.Net;
 using Site.Models;
 using static Functions.Enum;
 using static Functions.Constant;
+using Functions;
 
 namespace Site.Areas.Admin.Controllers
 {
@@ -64,19 +65,19 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Assunto))
-                    ModelState.AddModelError("Assunto", "Obrigatório");
+                    ModelState.AddModelError("Assunto", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Mensagem))
-                    ModelState.AddModelError("Mensagem", "Obrigatório");
+                    ModelState.AddModelError("Mensagem", Constant.MsgObrigatorio);
 
                 if (Model.DataEnvio == null)
-                    ModelState.AddModelError("DataEnvio", "Obrigatório");
+                    ModelState.AddModelError("DataEnvio", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Assunto))
-                    ModelState.AddModelError("Assunto", "Obrigatório");
+                    ModelState.AddModelError("Assunto", Constant.MsgObrigatorio);
 
                 if (Model.CursoId == 0)
-                    ModelState.AddModelError("CursoId", "Obrigatório");
+                    ModelState.AddModelError("CursoId", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -127,19 +128,19 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Assunto))
-                    ModelState.AddModelError("Assunto", "Obrigatório");
+                    ModelState.AddModelError("Assunto", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Mensagem))
-                    ModelState.AddModelError("Mensagem", "Obrigatório");
+                    ModelState.AddModelError("Mensagem", Constant.MsgObrigatorio);
 
                 if (Model.DataEnvio == null)
-                    ModelState.AddModelError("DataEnvio", "Obrigatório");
+                    ModelState.AddModelError("DataEnvio", Constant.MsgObrigatorio);
 
                 if (string.IsNullOrEmpty(Model.Assunto))
-                    ModelState.AddModelError("Assunto", "Obrigatório");
+                    ModelState.AddModelError("Assunto", Constant.MsgObrigatorio);
 
                 if (Model.CursoId == 0)
-                    ModelState.AddModelError("CursoId", "Obrigatório");
+                    ModelState.AddModelError("CursoId", Constant.MsgObrigatorio);
                 
                 #endregion
 

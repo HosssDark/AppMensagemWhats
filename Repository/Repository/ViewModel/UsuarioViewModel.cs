@@ -13,5 +13,6 @@ namespace Repository
         public string Email { get; set; }
         public int StatusId { get; set; }
         public string Status { get; set; }
+        public string Imagem { get; set; }
     }
 }

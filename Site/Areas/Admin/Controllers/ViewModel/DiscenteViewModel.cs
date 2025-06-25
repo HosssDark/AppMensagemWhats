@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Site
+namespace Site.Areas.Admin.Controllers.ViewModel
 {
     public class DiscenteViewModel
     {

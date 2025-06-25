@@ -2,12 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Repository;
 using Site.Libraries;
-using System.IO;
 using System;
 using Domain;
 using Site.Models;
 using static Functions.Enum;
-using static Functions.Constant;
 
 namespace Site.Areas.Admin.Controllers
 {
@@ -40,7 +38,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroObterRegistro;
+                TempData["Error"] = Constant.MsgErroObterRegistro;
                 return View();
             }
         }
@@ -59,7 +57,7 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Descricao))
-                    ModelState.AddModelError("Descricao", "Obrigatório");
+                    ModelState.AddModelError("Descricao", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -70,7 +68,7 @@ namespace Site.Areas.Admin.Controllers
 
                     _cursoRep.Add(Model);
 
-                    TempData["Success"] = MsgGravadoSucesso;
+                    TempData["Success"] = Constant.MsgGravadoSucesso;
 
                     return RedirectToAction("Index");
                 }
@@ -80,7 +78,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroTentarGravarRegistro;
+                TempData["Error"] = Constant.MsgErroTentarGravarRegistro;
                 return View(Model);
             }
         }
@@ -94,7 +92,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgRegistroNaoEncontrado;
+                TempData["Error"] = Constant.MsgRegistroNaoEncontrado;
                 return RedirectToAction("Index");
             }
         }
@@ -108,7 +106,7 @@ namespace Site.Areas.Admin.Controllers
                 #region Validacao
 
                 if (string.IsNullOrEmpty(Model.Descricao))
-                    ModelState.AddModelError("Descricao", "Obrigatório");
+                    ModelState.AddModelError("Descricao", Constant.MsgObrigatorio);
 
                 #endregion
 
@@ -116,7 +114,7 @@ namespace Site.Areas.Admin.Controllers
                 {
                     _cursoRep.Attach(Model);
 
-                    TempData["Success"] = MsgAlteradoSucesso;
+                    TempData["Success"] = Constant.MsgAlteradoSucesso;
 
                     return RedirectToAction("Index");
                 }
@@ -126,7 +124,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroTentarAlterarRegistro;
+                TempData["Error"] = Constant.MsgErroTentarAlterarRegistro;
                 return View(Model);
             }
         }
@@ -140,7 +138,7 @@ namespace Site.Areas.Admin.Controllers
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgRegistroNaoEncontrado;
+                TempData["Error"] = Constant.MsgRegistroNaoEncontrado;
                 return RedirectToAction("Index");
             }
         }
@@ -157,15 +155,15 @@ namespace Site.Areas.Admin.Controllers
                 {
                     _cursoRep.Inativar(Model);
 
-                    return Json(new ResultViewModel(TypeResult.Ok, TypeMessage.Success, MsgRegistroInativado));
+                    return Json(new ResultViewModel(TypeResult.Ok, TypeMessage.Success, Constant.MsgRegistroInativado));
                 }
 
-                return Json(new ResultViewModel(TypeResult.Error, TypeMessage.Error, MsgRegistroNaoEncontrado));
+                return Json(new ResultViewModel(TypeResult.Error, TypeMessage.Error, Constant.MsgRegistroNaoEncontrado));
             }
             catch (Exception Error)
             {
                 Log(Error);
-                TempData["Error"] = MsgErroTentarExcluir;
+                TempData["Error"] = Constant.MsgErroTentarExcluir;
                 return Json(new { Result = "Erro" });
             }
         }
